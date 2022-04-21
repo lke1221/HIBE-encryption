@@ -7,7 +7,7 @@
 </br>
 
 ## Forward secure encryption system은 다음과 같다  
-* 어느 기간(주기?) T=$2^t$에 대해서나 암호문은 세 개의 그룹 원소로만 이루어져있다. 또, private key의 size는 $O(t^2)$다. 단, section 4에서 다루는 hybrid system은 private key size가 $O(t^{3/2})$, 암호문 사이즈가 $O(\sqrt t)$ 이고, CHK 같은 업데이트 가능한 public 저장소를 사용할 경우 private key size가 $O(t)$나 $O(\sqrt t)$ 까지도 작아질 수 있다.  
+* 어느 기간(주기?) T=$$[2^t]$$에 대해서나 암호문은 세 개의 그룹 원소로만 이루어져있다. 또, private key의 size는 $O(t^2)$다. 단, section 4에서 다루는 hybrid system은 private key size가 $O(t^{3/2})$, 암호문 사이즈가 $O(\sqrt t)$ 이고, CHK 같은 업데이트 가능한 public 저장소를 사용할 경우 private key size가 $O(t)$나 $O(\sqrt t)$ 까지도 작아질 수 있다.  
 </br>
 
 ## 서두? 서론? (preliminaries)  

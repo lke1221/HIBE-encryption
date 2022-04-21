@@ -1,4 +1,12 @@
+partial translation of
+> Cramer, R., Boneh, D., Boyen, X., & Eu-Jin Goh. (2005). Hierarchical Identity Based Encryption with Constant Size Ciphertext. In Advances in Cryptology - EUROCRYPT 2005 (pp. 440–456). https://eprint.iacr.org/2005/015.pdf
+</br>
+
+* Github에서 LaTeX 지원이 안되는 관계로 수식 보기가 힘듦. 다운로드 받아서 Visual Studio Code로 읽으면 한결 읽기 편하다.(Markdown 파일 열어서 Ctrl+Shift+v 시 미리보기 화면 열림)  
+</br>
+
 # Hierarchical Identity Based Encryption with Constant Size Ciphertext  
+</br>
 
 ## 이 논문에서 다루고 있는 HIBE system의 특징  
 * 암호문 사이즈와 복호화 비용이 hierarchy depth($l$)과 독립적  
@@ -59,7 +67,7 @@ order: 원소의 수
 group of prime order: 원소의 수가 소수(prime number)인 그룹  
 즉, multiplicative cyclic group of prime order  = 원소의 수가 소수인 증가하는 순환군  
 2. $g$는 $G$의 생성자이다. (위에 설명에서 나온 것처럼 $g$의 거듭제곱인 수들로 $G$가 이뤄졌다는 의미)  
-3. $e$는 다음과 같은 bilinear map이다. $e: GxG->G_1$.  
+3. $e$는 다음과 같은 bilinear map이다. $e$: $G$ x $G$ -> $G_1$.  
 </br>
 
 $e$는 다음과 같은 특징을 갖는다.  
@@ -87,4 +95,55 @@ $g$와 $h$를 $G$의 두 개의 랜덤 생성자라고 하자. $\alpha$를 $Z_p^
 
 G의 $l$-$wBDHI$ 또는 $l$-$wBDHI^*$를 위한 알고리즘이 $l$-$BDHI$를 위한 알고리즘을 준다는 것을 확인하기는 쉽다  
 >(논문 읽다가 때려칠 뻔한 두 번째 위기. 뭐가 쉽다는건데..)  
-따라서, 주어진 $l$-$BDHI$ 문제는 
+따라서, $l$-$BDHI$ 문제의 사례 $(w, w_1, ... , w_l)$이 주어졌을 때, $l$-$BDHI^*$의 사례 $(w_l, h, w_{l-1}, ..., w_1, w)$를 정의한다. ($h=w_l^\gamma$, $\gamma$는 $Z_p^*$의 원소)  
+
+$T'$를 이 $l$-$wBDHI^*$문제의 solution이라고 할 때, $T=(T')^{1/\gamma}$가 원래 $l$-$BDHI$의 solution이다.  
+</br>
+
+이제 정확하게 computational 하고 decisional한 $l$-$wBDHI$ 가정을 정의하자. 편의를 위해 $l$-$wBDHI^*$에 관해 정의한다. $y_i=g^{(a^i)} \in G^*$ 라고 하자. $Pr[A(g,h,y_1,...,y_l)=e(g,h)^{\alpha^{l+1}}] \geq \epsilon$ 일 때, Algorithm A는 $l$-$wBDHI*$ 문제를 해결함으로써 $\epsilon$ 만큼의 이득을 본다. 이 확률은 $G^*$의 생성자 랜덤선택($g,h$)과 $Z_p$에 속하는 $\alpha$ 선택, 그리고 A에 사용되는 랜덤 비트들에 달렸다(?). $G$에서의 $l$-$wBDHI^*$ problem의 decisional 버전은 다음과 같이 정의된다.  
+>$\vec{y_{g, \alpha, l}}=(y_1,...,y_l)$  
+
+$b \in {0,1}$를 output으로 하는 알고리즘 $\beta$는 다음이 성립할 때 Decision $l$-$wBDHI^*$를 풀어서 $\epsilon$ 만큼의 이득을 얻는다. $|Pr[\beta(g,h,\vec{y_{g,\alpha,l}},e(g,h)^{(\alpha^{l+1})})=0]-Pr[\beta(g,h,\vec{y_{g,\alpha,l}},T)=0]|\geq\epsilon$  
+이 확률은 $G^*$의 생성자 $g,h$ 선택, $Z_p$에 속하는 $\alpha$ 선택, $T \in G_1^*$ 선택, 그리고 $\beta$에 의 해 소모된 랜덤 비트들에 의해 결정된다.(?) 왼쪽을 $P_{wBDHI^*}$라고 하고, 오른쪽을 $R{wBDHI^*}$라고 부른다.  
+</br>
+
+G의 (Decision)$l$-$wBDHI^*$ problem을 해결함으로써 $\epsilon$ 이상의 이득을 얻는 t-time 알고리즘이 존재하지 않을 때, (Decision) $(t, \epsilon, l)$-$wBDHI$ 가정이 성립한다고 한다.  
+정확성을 위해 간간히 t와 $\epsilon$ 을 drop하여 (Decision) $l$-$wBDHI$ 가정에 적용한다(?). 위에서 언급된 바와 같이, $G$에서의 computational 하고 decisional한 $l$-$BDHI$ 가정은 각각 computational 하고 decisional한 $l$-$wBDHI$ 가정을 내포한다.  
+</br>
+
+## A HIBE System with Constant Size Ciphertext  
+여기서부터는 프로젝트에 필요한 만큼만 이해하고 정리함! depth2_HIBE_algorithm.md와 내용 동일  
+</br>
+
+예상 시나리오: 최대 깊이가 2인 HIBE system 설계-parent HIBE key가 depth 1, child HIBE key가 depth 2  
+</br>
+
+1. Setup:  
+다음을 임의로 정해야 한다.  
+* $G$(=원소의 개수가 소수 $p$개인 증가하는 순환군)의 원소인 **$g, g_2, g_3, h_1, h_2$**  
+* $Z_p$(=modulo $p$ 연산의 결과로 나올 수 있는 수들. 즉 0부터 p-1까지)의 원소인 **$a, r, t, s$**  
+* $g_1$은 $g^a$와 같다.  
+* $r$은 NFT mint할 때마다(또는 소유자 바뀔 때마다), $t$는 열람권 요청 들어올 때마다 새로 생성  
+* $s$는 암호화 과정에서 사용  
+* 공개키 $ID$는 $(I_1,..,I_k)$로 이루어지며, 각 원소는 $Z_p$에 속한다.  
+</br>
+
+2. KeyGen:  
+Level 0 (system): public parameter는 $(g, g_1, g_2, g_3, h_1 ,h_2)$. master key는 $g_2^a$ (이하 $K$)  
+Level 1 (parent): $ID$는 $I_1$, private key $d$는 $((K*h_1^{I_1}*g_3)^r, g^r, h_2^r)$  
+Level 2 (child): $ID$는 $(I_1, I_2)$, private key $d$는 $((K*h_1^{I_1}*h_2^{I_2}*g_3)^{r+t}, g^{r+t})$  
+* 단, parent의 $I_1$과 child의 $I_1$은 다른 값이다!! 같아도 상관은 없겠지만?  
+</br>
+
+3. Encrypt:  
+우리는 HIBE child key로 암호화 할 것이므로, k=2를 기준으로 기술. $M$은 평문  
+$CT = (e(g_1, g_2)^s*M, g^s, (h_1^{I_1}*h_2^{I_2}*g_3)^s)$  
+* 여기서 e는 bilinear map($G$ x $G$->$G_1$) 이다.
+</br>
+
+4. Decrypt:  
+우리는 HIBE child key로 복호화 할것이므로, k=2를 기준으로 기술.  
+$CT=(A,B,C)$라고 할 때, private key $d=(a_0,a_1)$를 이용하여 $A*e(a1,C)/e(B,a0) = M$을 계산한다.  
+이 때 $e(a_1, C)/e(B, a_0)$는 $1/e(g_1,g_2)^s$와 같다.  
+따라서 결국 $M=A/e(g_1,g_2)^s$.  
+</br>

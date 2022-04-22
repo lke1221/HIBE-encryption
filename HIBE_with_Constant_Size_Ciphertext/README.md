@@ -61,13 +61,24 @@ HIBE 시스템 $\epsilon$는 $(t, q_{ID}, q_C, e)$-IND-ID-CCA secure할 경우, 
 ### Bilinear Groups  
 1. $G$와 $G_1$은 두 개의 multiplicative cyclic group of prime order 이다.  
 >(논문 읽다가 때려칠 뻔 했던 첫번째 위기)  
-multiplicative : ~증가하는~ 여기서는 곱셈군 이라는 의미인듯  
+~multiplicative : 증가하는?  여기서는 곱셈군 이라는 의미인듯~  
 cyclic group : 순환군. 순환군의 모든 원소는 어떤 고정된 원소의 거듭제곱이다. 즉, 군의 원소 $g$가 생성하는 순환군은 ${...,g^{-2}, g^{-1}, 1, g, g^2,...}$ 이다.  
 order: 원소의 수  
 group of prime order: 원소의 수가 소수(prime number)인 그룹  
-즉, multiplicative cyclic group of prime order  = 원소의 수가 소수인, 순환군인 곱셈군  
+~즉, multiplicative cyclic group of prime order  = 원소의 수가 소수인, 순환군인 곱셈군~  
 2. $g$는 $G$의 생성자이다. (위에 설명에서 나온 것처럼 $g$의 거듭제곱인 수들로 $G$가 이뤄졌다는 의미)  
 3. $e$는 다음과 같은 bilinear map이다. $e$: $G$ x $G$ -> $G_1$.  
+**최종 정정**  
+__구현하려고 찾다보니 multiplicative cyclic group을 순환군인 곱셈군으로 해석하면 prime order인 경우가 3밖에 없다!__  
+https://en.wikipedia.org/wiki/Multiplicative_group_of_integers_modulo_n#Cyclic_case  
+곱셈군에 대한 설명. 여기에 나와있는걸 정리하면:  
+1. (Z/nZ)^x는 n이 1, 2, 4, p^k, 2*p^k 중 하나일 때 cyclic하다. 이때 p는 __2가 아닌__ 소수, k는 __0보다 큰 수__ (가우스에 의해 증명됨)  
+2. (1번에서 k=1일때) |(Z/pZ)^x| = p-1  
+3. n=p^k이거나 n=2*p^k이면 order는 p^k-p^(k-1)  
+n이 p일 때 order가 소수인건 3밖에 없음. (3도 소수, p-1=2 도 소수)  
+이걸 쓸 수는 없으므로 n은 p의 k승이거나 p의 k승에 2를 곱한 값이어야 함. (단 k는 2 이상의 자연수)  
+고로 p^k-p^(k-1)이 소수인 경우를 찾아야 함. => ??? 근데 애초에 p^k랑 (p-1)로 분리가 가능한데 이게 가능할리가  
+따라서 https://math.stackexchange.com/questions/1392829/multiplicative-group-of-prime-order-greater-than-2 여기에도 나와있는 것처럼 'any group, where the group operation is written using product notation'으로 해석하는 게 맞을 것 같다.  
 </br>
 
 $e$는 다음과 같은 특징을 갖는다.  

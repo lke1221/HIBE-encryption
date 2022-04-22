@@ -68,6 +68,8 @@ group of prime order: 원소의 수가 소수(prime number)인 그룹
 ~즉, multiplicative cyclic group of prime order  = 원소의 수가 소수인, 순환군인 곱셈군~  
 2. $g$는 $G$의 생성자이다. (위에 설명에서 나온 것처럼 $g$의 거듭제곱인 수들로 $G$가 이뤄졌다는 의미)  
 3. $e$는 다음과 같은 bilinear map이다. $e$: $G$ x $G$ -> $G_1$.  
+</br>
+
 **최종 정정**  
 __구현하려고 찾다보니 multiplicative cyclic group을 순환군인 곱셈군으로 해석하면 prime order인 경우가 3밖에 없다!__  
 https://en.wikipedia.org/wiki/Multiplicative_group_of_integers_modulo_n#Cyclic_case  

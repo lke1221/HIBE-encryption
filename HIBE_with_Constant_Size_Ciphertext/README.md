@@ -61,11 +61,11 @@ HIBE 시스템 $\epsilon$는 $(t, q_{ID}, q_C, e)$-IND-ID-CCA secure할 경우, 
 ### Bilinear Groups  
 1. $G$와 $G_1$은 두 개의 multiplicative cyclic group of prime order 이다.  
 >(논문 읽다가 때려칠 뻔 했던 첫번째 위기)  
-multiplicative : 증가하는  
+multiplicative : ~증가하는~ 여기서는 곱셈군 이라는 의미인듯  
 cyclic group : 순환군. 순환군의 모든 원소는 어떤 고정된 원소의 거듭제곱이다. 즉, 군의 원소 $g$가 생성하는 순환군은 ${...,g^{-2}, g^{-1}, 1, g, g^2,...}$ 이다.  
 order: 원소의 수  
 group of prime order: 원소의 수가 소수(prime number)인 그룹  
-즉, multiplicative cyclic group of prime order  = 원소의 수가 소수인 증가하는 순환군  
+즉, multiplicative cyclic group of prime order  = 원소의 수가 소수인, 순환군인 곱셈군  
 2. $g$는 $G$의 생성자이다. (위에 설명에서 나온 것처럼 $g$의 거듭제곱인 수들로 $G$가 이뤄졌다는 의미)  
 3. $e$는 다음과 같은 bilinear map이다. $e$: $G$ x $G$ -> $G_1$.  
 </br>
